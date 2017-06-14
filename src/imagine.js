@@ -1,25 +1,11 @@
-<!doctype html>
-<html>
-<head>
-<meta charset="UTF-8" />
-<title>Canvas Maze Game</title>
-</head>
-<body>
-<header> </header>
-<nav> </nav>
-<section>
 
-<div>
-<canvas id="canvas" width="482" height="482">
-</canvas>
-</div>
+window.addEventListener("deviceorientation", doKeyDown);
 
-<script type="text/javascript">
 var canvas;
 var ctx;
-var dx = 5;
-var dy = 5;
-var x = 200;
+var dx = 2;
+var dy = 2;
+var x = 180;
 var y = 5;
 var WIDTH = 482;
 var HEIGHT = 482;
@@ -42,12 +28,21 @@ function init() {
 canvas = document.getElementById("canvas");
 ctx = canvas.getContext("2d");
 img.src = "maze.gif";
-return setInterval(draw, 10);
+return setInterval(draw, 0);
 }
 
 function doKeyDown(evt){
-switch (evt.keyCode) {
-case 38:  /* Up arrow was pressed */
+x1=event.beta;
+y1=event.gamma;
+document.getElementById("y").innerHTML = "Beta = "+x1;
+document.getElementById("z").innerHTML = "Gama = "+y1;
+if(x1>90)
+x1=90;
+if(x1<-90)
+x1=90;
+
+
+if(x1<-5){ 
 if (y - dy > 0){
 y -= dy;
 clear();
@@ -57,9 +52,9 @@ y += dy;
 collision = 0;
 }
 }
+}
 
-break;
-case 40:  /* Down arrow was pressed */
+if(x1>5){  
 if (y + dy < HEIGHT ){
 y += dy;
 clear();
@@ -69,9 +64,9 @@ y -= dy;
 collision = 0;
 }
 }
+}
 
-break;
-case 37:  /* Left arrow was pressed */
+if(y1<-5){  
 if (x - dx > 0){
 x -= dx;
 clear();
@@ -81,8 +76,9 @@ x += dx;
 collision = 0;
 }
 }
-break;
-case 39:  /* Right arrow was pressed */
+}
+
+if(y1>5){ 
 if ((x + dx < WIDTH)){
 x += dx;
 clear();
@@ -92,7 +88,6 @@ x -= dx;
 collision = 0;
 }
 }
-break;
 }
 }
 
@@ -113,10 +108,3 @@ rect(x, y, 15,15);
 }
 
 init();
-window.addEventListener('keydown',doKeyDown,true);
-</script>
-</section>
-<aside> </aside>
-<footer> </footer>
-</body>
-</html>
