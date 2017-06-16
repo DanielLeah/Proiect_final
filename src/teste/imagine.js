@@ -7,8 +7,8 @@ var dx = 2;
 var dy = 2;
 var x = 180;
 var y = 5;
-var WIDTH = 482;
-var HEIGHT = 482;
+var WIDTH = 440;
+var HEIGHT = 440;
 var img = new Image();
 var collision = 0;
 
@@ -88,10 +88,11 @@ collision = 0;
 }
 }
 }
-if(x==480&&y==480)
+if((x>416)&&(y>421))
 {
-	alert("Felicitari, ai iesit din labirint in "+elapsed);
-	reset();
+	document.getElementById("check").innerHTML = "x "+x+" "+"y "+y;
+reseteaza();
+
 }
 }
 
@@ -113,7 +114,7 @@ rect(x, y, 15,15);
 
 
 
-function reset(){
+function reseteaza(){
 	window.location.reload();
 	
 }
