@@ -11,7 +11,9 @@ var WIDTH = 440;
 var HEIGHT = 440;
 var img = new Image();
 var collision = 0;
-
+var elapsed;
+var ok=0;
+var elapsed1;
 function rect(x,y,w,h) {
 ctx.beginPath();
 ctx.rect(x,y,w,h);
@@ -90,9 +92,13 @@ collision = 0;
 }
 if((x>416)&&(y>421))
 {
-	document.getElementById("check").innerHTML = "x "+x+" "+"y "+y;
-reseteaza();
-
+	ok=1;
+	document.getElementById("check").innerHTML = "x "+x+" "+"y "+y+"gata";
+	ctx.clearRect(0, 0, WIDTH, HEIGHT);
+	img.src="gz.gif";
+	ctx.drawImage(img, 0, 0);
+	window.removeEventListener("deviceorientation", doKeyDown, false);
+	
 }
 }
 
@@ -122,6 +128,7 @@ function reseteaza(){
 
 
 function timer(){
+
 var start = new Date().getTime(),
     elapsed = '0.0';
 
@@ -132,7 +139,11 @@ window.setInterval(function()
     elapsed = Math.floor(time / 100) / 10;
     if(Math.round(elapsed) == elapsed) { elapsed += '.0'; }
 
-    document.getElementById("time").innerHTML = "Timp = "+ elapsed;
+	if(ok==0)
+{
+ elapsed1=elapsed;
+}
+    document.getElementById("time").innerHTML = "Timp = "+ elapsed1;
     
     
 }, 100);
