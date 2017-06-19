@@ -1,5 +1,5 @@
 
-window.addEventListener("deviceorientation", doKeyDown);
+window.addEventListener("deviceorientation", move);
 //def variables
 var canvas;
 var ctx;
@@ -15,6 +15,15 @@ var elapsed;
 var ok=0;
 var elapsed1;
 
+
+function init() {
+canvas = document.getElementById("canvas");
+ctx = canvas.getContext("2d");
+img.src = "maze.gif";
+timer();
+return setInterval(draw, 1);
+}
+
 function rect(x,y,w,h) {
 ctx.beginPath();
 ctx.rect(x,y,w,h);
@@ -27,15 +36,8 @@ ctx.clearRect(0, 0, WIDTH, HEIGHT);
 ctx.drawImage(img, 0, 0);
 }
 
-function init() {
-canvas = document.getElementById("canvas");
-ctx = canvas.getContext("2d");
-img.src = "maze.gif";
-timer();
-return setInterval(draw, 1);
-}
 
-function doKeyDown(evt){
+function move(){
 x1=event.beta;
 y1=event.gamma;
 if(x1>90)
@@ -91,18 +93,18 @@ collision = 0;
 }
 }
 }
-if((x>416)&&(y>421))
+if((x>=420)&&(y>=420))
 {
 	ok=1;
     document.getElementById("final").innerHTML = "Felicitari! Ai iesit din labirint in "+elapsed1;
 	//navigator.vibrate(200);
-	window.removeEventListener("deviceorientation", doKeyDown, false);
+	window.removeEventListener("deviceorientation", move, false);
 	
 }
 }
 
-function checkcollision() {
-var imgd = ctx.getImageData(x, y, 15, 15);
+function checkcollision() {//functie ce verifica daca in vectorul pix exista valori de 0
+var imgd = ctx.getImageData(x, y, 12, 12);
 var pix = imgd.data;
 for (var i = 0; n = pix.length, i < n; i += 4) {
 if (pix[i] == 0) {
@@ -114,7 +116,7 @@ collision = 1;
 function draw() {
 clear();
 ctx.fillStyle = "purple";
-rect(x, y, 15,15);
+rect(x, y, 12,12);
 }
 
 
