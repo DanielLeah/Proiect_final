@@ -1,6 +1,6 @@
 
 window.addEventListener("deviceorientation", doKeyDown);
-
+//def variables
 var canvas;
 var ctx;
 var dx = 2;
@@ -14,6 +14,7 @@ var collision = 0;
 var elapsed;
 var ok=0;
 var elapsed1;
+
 function rect(x,y,w,h) {
 ctx.beginPath();
 ctx.rect(x,y,w,h);
@@ -94,6 +95,7 @@ if((x>416)&&(y>421))
 {
 	ok=1;
     document.getElementById("final").innerHTML = "Felicitari! Ai iesit din labirint in "+elapsed1;
+	//navigator.vibrate(200);
 	window.removeEventListener("deviceorientation", doKeyDown, false);
 	
 }
