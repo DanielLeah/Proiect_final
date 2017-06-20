@@ -17,90 +17,90 @@ var elapsed1;
 
 
 function init() {
-canvas = document.getElementById("canvas");
-ctx = canvas.getContext("2d");
-img.src = "maze.gif";
-timer();
+		canvas = document.getElementById("canvas");
+		ctx = canvas.getContext("2d");
+		img.src = "maze.gif";
+		timer();
 return setInterval(draw, 1);
 }
 
 function rect(x,y,w,h) {
-ctx.beginPath();
-ctx.rect(x,y,w,h);
-ctx.closePath();
-ctx.fill();
+		ctx.beginPath();
+		ctx.rect(x,y,w,h);
+		ctx.closePath();
+		ctx.fill();
 }
 
 function clear() {
-ctx.clearRect(0, 0, WIDTH, HEIGHT);
-ctx.drawImage(img, 0, 0);
+		ctx.clearRect(0, 0, WIDTH, HEIGHT);
+		ctx.drawImage(img, 0, 0);
 }
 
 
 function move(){
-x1=event.beta;
-y1=event.gamma;
-if(x1>90)
-x1=90;
-if(x1<-90)
-x1=90;
+			x1=event.beta;
+			y1=event.gamma;
+			if(x1>90)
+			x1=90;
+			if(x1<-90)
+			x1=90;
 
 
-if(x1<-5){ 
-if (y - dy > 0){
-y -= dy;
-clear();
-checkcollision();
-if (collision == 1){
-y += dy;
-collision = 0;
-}
-}
-}
+			if(x1<-5){ 
+			if (y - dy > 0){
+			y -= dy;
+			//clear();
+			checkcollision();
+			if (collision == 1){
+			y += dy;
+			collision = 0;
+			}
+			}
+			}
 
-if(x1>5){  
-if (y + dy < HEIGHT ){
-y += dy;
-clear();
-checkcollision();
-if (collision == 1){
-y -= dy;
-collision = 0;
-}
-}
-}
+			if(x1>5){  
+			if (y + dy < HEIGHT ){
+			y += dy;
+			//clear();
+			checkcollision();
+			if (collision == 1){
+			y -= dy;
+			collision = 0;
+			}
+			}
+			}
 
-if(y1<-5){  
-if (x - dx > 0){
-x -= dx;
-clear();
-checkcollision();
-if (collision == 1){
-x += dx;
-collision = 0;
-}
-}
-}
+			if(y1<-5){  
+			if (x - dx > 0){
+			x -= dx;
+			//clear();
+			checkcollision();
+			if (collision == 1){
+			x += dx;
+			collision = 0;
+			}
+			}
+			}
 
-if(y1>5){ 
-if ((x + dx < WIDTH)){
-x += dx;
-clear();
-checkcollision();
-if (collision == 1){
-x -= dx;
-collision = 0;
-}
-}
-}
-if((x>=420)&&(y>=420))
-{
-	ok=1;
-    document.getElementById("final").innerHTML = "Felicitari! Ai iesit din labirint in "+elapsed1;
-	//navigator.vibrate(200);
-	window.removeEventListener("deviceorientation", move, false);
-	
-}
+			if(y1>5){ 
+					if ((x + dx < WIDTH)){
+					x += dx;
+					//clear();
+					checkcollision();
+					if (collision == 1){
+					x -= dx;
+					collision = 0;
+					}
+					}
+			}
+			if((x>=420)&&(y>=420))
+			{
+				ok=1;
+				document.getElementById("final").innerHTML = "Felicitari! Ai iesit din labirint in "+elapsed1;
+				//navigator.vibrate(200);
+				window.removeEventListener("deviceorientation", move, false);
+				
+			}
 }
 
 function checkcollision() {//functie ce verifica daca in vectorul pix exista valori de 0
@@ -117,6 +117,7 @@ function draw() {
 clear();
 ctx.fillStyle = "purple";
 rect(x, y, 12,12);
+
 }
 
 
